@@ -88,7 +88,58 @@ Router::scope('/', function (RouteBuilder $routes) {
      * You can remove these routes once you've connected the
      * routes you want in your application.
      */
+    
+
+    Router::scope('/articles', function (RouteBuilder $routes) {
+        $routes->get(
+            '',
+            ['controller' => 'Articles', 'action' => 'index']
+        );
+
+        $routes->get(
+            '/view/{slug}',
+            ['controller' => 'Articles', 'action' => 'view']
+        )->setPass(['slug']);   //pass slug to controller's function
+        
+        $routes->get(
+            '/add',
+            ['controller' => 'Articles', 'action' => 'add']
+        );
+
+        $routes->post(
+            '/add',
+            ['controller' => 'Articles', 'action' => 'add']
+        );
+
+        $routes->get(
+            '/edit/{slug}',
+            ['controller' => 'Articles', 'action' => 'edit']
+        )->setPass(['slug']);
+
+        $routes->put(
+            '/edit/{slug}',
+            ['controller' => 'Articles', 'action' => 'edit']
+        )->setPass(['slug']);
+
+        $routes->connect(
+            'delete/{slug}',
+            ['controller' => 'Articles', 'action' => 'delete']
+        )->setPass(['slug']);
+    
+
+    // Match multiple verbs
+    // Prior to 3.5 use $options['_method'] to set method
+    // $routes->connect(
+    //     '/reviews/start',
+    //     [
+    //         'controller' => 'Reviews',
+    //         'action' => 'start',
+    //     ]
+    // )->setMethods(['POST', 'PUT']);
+    });
+
     $routes->fallbacks(DashedRoute::class);
+
 });
 
 /*

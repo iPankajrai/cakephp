@@ -69,22 +69,6 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
 
-    $routes->connect('/articles', ['controller' => 'Articles', 'action' => 'index']);
-
-    // Using a scoped route builder.
-    Router::scope('/articles/', function (RouteBuilder $routes) {
-        $routes->connect('*', ['controller' => 'Articles', 'action' => 'add'])
-                        ->setMethods(['GET', 'POST']);
-        $routes->connect('*', ['controller' => 'Articles', 'action' => 'edit'])
-                        ->setMethods(['GET', 'POST']);
-        $routes->connect('*', ['controller' => 'Articles', 'action' => 'delete'])
-                        ->setMethods(['GET', 'POST']);
-        $routes->connect('*', ['controller' => 'Articles', 'action' => 'view'])
-                        ->setMethods(['GET', 'POST']);
-
-    });
-
-
     /*
      * Connect catchall routes for all controllers.
      *
@@ -104,7 +88,7 @@ Router::scope('/', function (RouteBuilder $routes) {
      * You can remove these routes once you've connected the
      * routes you want in your application.
      */
-    // $routes->fallbacks(DashedRoute::class);
+    $routes->fallbacks(DashedRoute::class);
 });
 
 /*

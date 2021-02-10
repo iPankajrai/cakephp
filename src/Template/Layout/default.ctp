@@ -1,3 +1,5 @@
+<?= $this->Flash->render() ?>
+
 <?php
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
@@ -13,6 +15,7 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  * @var \App\View\AppView $this
  */
+
 
 $cakeDescription = 'CakePHP: the rapid development php framework';
 ?>
@@ -54,5 +57,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </div>
     <footer>
     </footer>
+
+
 </body>
 </html>
